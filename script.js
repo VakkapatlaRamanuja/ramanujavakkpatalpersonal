@@ -1,16 +1,4 @@
-const menuButton = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-menuButton.addEventListener('click', () => {
-  const isOpen = navLinks.classList.toggle('open');
-  menuButton.setAttribute('aria-expanded', isOpen);
-  menuButton.textContent = isOpen ? '×' : '☰';
-});
-
-document.querySelectorAll('.nav-links a').forEach((link) => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    menuButton.setAttribute('aria-expanded', 'false');
-    menuButton.textContent = '☰';
-  });
-});
+const menuButton=document.querySelector('.menu-toggle');const navLinks=document.querySelector('.nav-links');
+if(menuButton){menuButton.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuButton.setAttribute('aria-expanded',open);menuButton.textContent=open?'×':'☰'});document.querySelectorAll('.nav-links a').forEach(link=>link.addEventListener('click',()=>{navLinks.classList.remove('open');menuButton.setAttribute('aria-expanded','false');menuButton.textContent='☰'}))}
+const progress=document.querySelector('.progress-bar');const updateProgress=()=>{const scrollable=document.documentElement.scrollHeight-window.innerHeight;progress.style.width=`${scrollable>0?(window.scrollY/scrollable)*100:0}%`};window.addEventListener('scroll',updateProgress,{passive:true});updateProgress();
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(element=>observer.observe(element));
